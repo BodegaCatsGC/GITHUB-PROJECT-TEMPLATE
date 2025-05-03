@@ -1,0 +1,14 @@
+# Labeler configuration
+
+# Example:
+# "*.js":
+#   - javascript
+
+"**/*.py":
+  - python
+
+"**/*.ts":
+  - typescript
+
+"**/*.md":
+  - documentation

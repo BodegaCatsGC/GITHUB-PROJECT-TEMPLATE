@@ -1,0 +1,21 @@
+name: Security Scan
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  security:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Node.js Audit
+        run: |
+          npm audit --prefix nodejs || echo "Node.js audit warnings"
+          npm audit --prefix typescript || echo "TypeScript audit warnings"
+      - name: Python Bandit Scan
+        run: |
+          pip install bandit
+          bandit -r python/src || echo "Python bandit warnings"

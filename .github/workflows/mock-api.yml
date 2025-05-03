@@ -1,0 +1,25 @@
+# DO NOT EDIT: Managed by project automation
+# Workflow to start a mock API server from OpenAPI spec for testing
+
+name: Mock API Server
+
+on:
+  workflow_dispatch:
+
+jobs:
+  mock-api:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+      - name: Install Prism CLI
+        run: npm install -g @stoplight/prism-cli
+      - name: Start Prism mock server
+        run: |
+          npx @stoplight/prism-cli mock docs/api/openapi.yml --port 4010 &
+          sleep 5
+          curl http://localhost:4010/

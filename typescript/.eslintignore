@@ -1,0 +1,20 @@
+# ESLint ignore patterns for TypeScript project
+
+# Dependencies
+node_modules/
+
+# Build and output directories
+dist/
+build/
+
+# Test coverage
+coverage/
+
+# Logs
+*.log
+
+# Environment variables
+.env
+
+# Obsidian vault
+obsidian/

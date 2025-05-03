@@ -1,0 +1,50 @@
+openapi: 3.0.1
+info:
+  title: GITHUB PROJECT TEMPLATE API
+  version: 1.0.0
+  description: |
+    Example OpenAPI specification for GITHUB PROJECT TEMPLATE.
+    Comment out or prune sections below to match your stack.
+servers:
+  - url: https://api.example.com/v1
+    description: Production server
+  - url: http://localhost:8000/v1
+    description: Python FastAPI (default)
+  - url: http://localhost:3000/v1
+    description: Node.js Express (optional)
+  - url: http://localhost:4000/v1
+    description: TypeScript (NestJS/Express, optional)
+
+paths:
+  /hello:
+    get:
+      summary: Greet the user
+      parameters:
+        - in: query
+          name: name
+          schema:
+            type: string
+          required: false
+          description: Name to greet
+      responses:
+        '200':
+          description: Successful greeting
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+  # Add more endpoints for your stack below
+  # Comment out or prune as needed
+components:
+  schemas:
+    # Define reusable schemas here
+    ErrorResponse:
+      type: object
+      properties:
+        message:
+          type: string
+      required:
+        - message

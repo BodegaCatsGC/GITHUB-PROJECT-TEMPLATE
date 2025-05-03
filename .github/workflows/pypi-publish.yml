@@ -1,0 +1,28 @@
+name: Publish to PyPI
+# ===============================
+# DO NOT EDIT unless you know what you're doing.
+# This workflow is part of the project template automation.
+# ===============================
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Build and publish
+        run: |
+          cd python
+          python -m pip install --upgrade build twine
+          python -m build
+          twine upload dist/*
+        env:
+          TWINE_USERNAME: ${{ secrets.PYPI_USERNAME }}
+          TWINE_PASSWORD: ${{ secrets.PYPI_PASSWORD }}

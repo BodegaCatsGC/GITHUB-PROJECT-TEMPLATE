@@ -1,0 +1,54 @@
+<!-- TODO: fill in .gitignore -->
+
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-error.log
+dist/
+build/
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Virtual environments
+.env
+.venv/
+.env.local
+.env.*.local
+
+# Editor directories and files
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+# macOS
+.DS_Store
+
+# Logs
+logs/
+*.log
+
+# Coverage directories
+coverage/
+htmlcov/
+
+# Obsidian vault cache
+obsidian/.obsidian/
+
+# Docker
+docker-compose.override.yml
+Dockerfile*
+
+# system files
+Thumbs.db

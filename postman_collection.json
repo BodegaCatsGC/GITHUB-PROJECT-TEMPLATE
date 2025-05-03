@@ -1,0 +1,38 @@
+{
+  "info": {
+    "name": "GITHUB PROJECT TEMPLATE API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Root Endpoint",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8000/",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8000",
+          "path": [""]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "OpenAPI Schema",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8000/openapi.json",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8000",
+          "path": ["openapi.json"]
+        }
+      },
+      "response": []
+    }
+  ]
+}
