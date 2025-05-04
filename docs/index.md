@@ -6,6 +6,17 @@ Welcome to the documentation for **GITHUB PROJECT TEMPLATE**. Use this index to 
 
 ## Getting Started
 
+- [Project Roadmap](../ROADMAP.md)
+- [Changelog](../CHANGELOG.md)
+- [Security Policy](../SECURITY.md)
+- [Support](../SUPPORT.md)
+- [Manual](../MANUAL.md)
+- [Troubleshooting](../TROUBLESHOOTING.md)
+- [Telemetry Opt-In](../TELEMETRY_OPT_IN.md)
+- [Release Guide](../RELEASE.md)
+
+> **Note:** These links point to files outside the documentation site and will only work when browsing the repository, not in the published MkDocs site.
+
 - [Onboarding Guide](onboarding.md): Steps to get up and running.
 - [Deployment Guide](deployment.md): How to deploy the project across environments.
 - [System Architecture](architecture.md): Overview of system components and data flow.

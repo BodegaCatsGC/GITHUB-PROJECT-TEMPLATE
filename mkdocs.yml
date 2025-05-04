@@ -1,0 +1,24 @@
+site_name: Project Documentation
+nav:
+  - Home: index.md
+  - Architecture: architecture.md
+  - API Reference: api/openapi.yml
+  - Onboarding: onboarding.md
+  - Structure: structure.md
+  - Accessibility: accessibility.md
+  - Editor: editor.md
+  - Deployment: deployment.md
+  - License Attribution: license-attribution.md
+  - First PR: first-pr.md
+  # The following files are at the project root and not included in the docs site by default.
+  # Uncomment and move these files into the docs/ folder if you want them in the navigation.
+  # - Roadmap: ROADMAP.md
+  # - Changelog: CHANGELOG.md
+  # - Security: SECURITY.md
+  # - Support: SUPPORT.md
+  # - Manual: MANUAL.md
+  # - Troubleshooting: TROUBLESHOOTING.md
+  # - Telemetry Opt-In: TELEMETRY_OPT_IN.md
+  # - Release: RELEASE.md
+theme:
+  name: material
