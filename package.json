@@ -1,0 +1,6 @@
+{
+  "scripts": {
+    // ...existing scripts...
+    "scaffold": "plop project"
+  }
+}
