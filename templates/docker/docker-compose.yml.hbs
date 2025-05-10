@@ -1,0 +1,24 @@
+version: '3.8'
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    # Load your .env.dev into the container
+    env_file:
+      - .env.dev
+    volumes:
+      - ./:/usr/src/{{name}}
+    # Map a PORT from .env.dev or default to 3000
+    ports:
+      - "${PORT:-3000}:${PORT:-3000}"
+    # Dev command: detect your stack and start the appropriate watcher
+    command: >
+      sh -c "\
+        if [ -f package.json ]; then \
+          npm run dev; \
+        elif [ -f requirements.txt ]; then \
+          uvicorn main:app --reload --host 0.0.0.0 --port ${PORT:-8000}; \
+        else \
+          echo 'No dev command found—please adjust docker-compose.yml'; \
+        fi"

@@ -1,0 +1,24 @@
+# Install both Node and Python runtimes so we can detect & run either
+FROM python:3.10-slim AS base
+
+# Install Node.js (for JS/TS or React projects)
+RUN apt-get update \
+ && apt-get install -y curl gnupg \
+ && curl -fsSL https://deb.nodesource.com/setup_18.x | bash - \
+ && apt-get install -y nodejs \
+ && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /usr/src/{{name}}
+
+# Copy lockfiles first for caching
+COPY package*.json ./
+RUN if [ -f package.json ]; then npm install; fi
+
+COPY requirements.txt ./
+RUN if [ -f requirements.txt ]; then pip install --no-cache-dir -r requirements.txt; fi
+
+# Copy the rest of your code
+COPY . .
+
+# Default to opening a shell; overridden by docker-compose command below
+CMD [ "sh", "-c", "echo 'Container ready—see README for how to start dev server.'" ]
