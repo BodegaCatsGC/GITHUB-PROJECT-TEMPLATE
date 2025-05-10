@@ -1,0 +1,22 @@
+# DO NOT EDIT: Managed by project automation
+# Sample workflow to check for telemetry opt-in file
+
+name: Telemetry Opt-In Check
+
+on:
+  workflow_dispatch:
+
+jobs:
+  check-telemetry-optin:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Check for telemetry opt-in file
+        run: |
+          if [ -f "TELEMETRY_OPT_IN.md" ]; then
+            echo "Telemetry opt-in file present."
+          else
+            echo "Telemetry opt-in file missing."
+            exit 1
+          fi

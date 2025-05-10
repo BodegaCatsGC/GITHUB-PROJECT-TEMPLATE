@@ -1,0 +1,23 @@
+# DO NOT EDIT: Managed by project automation
+# Sample i18n workflow for demonstration
+
+name: Internationalization Sample
+
+on:
+  workflow_dispatch:
+
+jobs:
+  check-i18n:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Check for i18n files
+        run: |
+          echo "Checking for i18n/locales directory and sample translation files..."
+          if [ -d "i18n/locales" ]; then
+            echo "i18n/locales directory exists."
+          else
+            echo "i18n/locales directory missing."
+            exit 1
+          fi

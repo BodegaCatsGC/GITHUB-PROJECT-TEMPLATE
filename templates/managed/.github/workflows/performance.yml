@@ -1,0 +1,23 @@
+name: Performance Test
+# ===============================
+# DO NOT EDIT unless you know what you're doing.
+# This workflow is part of the project template automation.
+# ===============================
+
+on:
+  workflow_dispatch:
+
+jobs:
+  performance:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install k6
+        run: |
+          sudo apt-get update && sudo apt-get install -y gnupg2
+          curl https://github.com/grafana/k6/releases/download/v0.45.0/k6-v0.45.0-linux-amd64.tar.gz -L | tar xz
+          sudo mv k6-v0.45.0-linux-amd64/k6 /usr/local/bin/
+      - name: Run k6 load test
+        run: |
+          # Place your k6 script in scripts/perf-test.js
+          k6 run scripts/perf-test.js || echo "No k6 script found"

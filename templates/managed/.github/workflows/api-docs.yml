@@ -1,0 +1,27 @@
+name: Generate API Docs
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'python/src/**'
+      - 'nodejs/src/**'
+      - 'typescript/src/**'
+
+jobs:
+  docs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Generate Python docs (Sphinx)
+        run: |
+          pip install sphinx
+          sphinx-apidoc -o docs/python python/src
+      - name: Generate TypeScript docs (TypeDoc)
+        run: |
+          npm install --prefix typescript typedoc
+          npx --prefix typescript typedoc --out docs/typescript typescript/src
+      - name: Generate Node.js docs (JSDoc)
+        run: |
+          npm install --prefix nodejs jsdoc
+          npx --prefix nodejs jsdoc -c nodejs/jsdoc.json -d docs/nodejs nodejs/src

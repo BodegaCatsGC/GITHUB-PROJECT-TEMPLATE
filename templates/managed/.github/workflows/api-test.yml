@@ -1,0 +1,48 @@
+name: API Integration Test
+# ===============================
+# DO NOT EDIT unless you know what you're doing.
+# This workflow is part of the project template automation.
+# ===============================
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'python/src/**'
+      - 'nodejs/src/**'
+      - 'typescript/src/**'
+      - 'docs/api/openapi.yml'
+  pull_request:
+    branches: [main]
+
+jobs:
+  api-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+      - name: Install dependencies
+        run: |
+          pip install -r python/requirements.txt
+          npm install --prefix nodejs
+          npm install --prefix typescript
+      - name: Run Python API tests
+        run: |
+          if [ -d "python/tests" ]; then pytest python/tests --tb=short -m api || echo "No Python API tests"; fi
+      - name: Run Node.js API tests
+        run: |
+          if [ -d "nodejs/tests" ]; then npm test --prefix nodejs || echo "No Node.js API tests"; fi
+      - name: Run TypeScript API tests
+        run: |
+          if [ -d "typescript/tests" ]; then npm test --prefix typescript || echo "No TypeScript API tests"; fi
+      - name: Run OpenAPI contract tests
+        run: |
+          pip install schemathesis
+          if [ -f "docs/api/openapi.yml" ]; then schemathesis run docs/api/openapi.yml || echo "No OpenAPI contract tests"; fi

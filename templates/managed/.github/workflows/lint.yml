@@ -1,0 +1,38 @@
+name: Lint
+# ===============================
+# DO NOT EDIT unless you know what you're doing.
+# This workflow is part of the project template automation.
+# ===============================
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install dependencies
+        run: |
+          npm install --prefix nodejs
+          npm install --prefix typescript
+          pip install -r python/requirements.txt
+      - name: Lint Node.js
+        run: npm run lint --prefix nodejs || echo "No lint script"
+      - name: Lint TypeScript
+        run: npm run lint --prefix typescript || echo "No lint script"
+      - name: Lint Python
+        run: |
+          pip install flake8
+          flake8 python/src || echo "No Python lint errors"

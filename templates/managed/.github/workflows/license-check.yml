@@ -1,0 +1,28 @@
+name: Dependency License Check
+# ===============================
+# DO NOT EDIT unless you know what you're doing.
+# This workflow is part of the project template automation.
+# ===============================
+
+on:
+  schedule:
+    - cron: '0 0 * * 0'
+  workflow_dispatch:
+
+jobs:
+  license-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check Node.js licenses
+        run: |
+          npm install --prefix nodejs
+          npx license-checker --json --production --start nodejs
+      - name: Check TypeScript licenses
+        run: |
+          npm install --prefix typescript
+          npx license-checker --json --production --start typescript
+      - name: Check Python licenses
+        run: |
+          pip install pip-licenses
+          pip-licenses --format=markdown
