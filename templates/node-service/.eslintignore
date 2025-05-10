@@ -1,0 +1,17 @@
+# ESLint ignore patterns for Node.js project
+
+# Dependencies
+node_modules/
+
+# Build directories
+dist/
+build/
+
+# Test coverage
+coverage/
+
+# Logs
+*.log
+
+# Environment variables
+.env
